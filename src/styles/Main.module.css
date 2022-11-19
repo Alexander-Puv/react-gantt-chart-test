@@ -6,9 +6,3 @@
     overflow: hidden;
     box-shadow: inset -4px 0 8px -5px rgba(0, 0, 0, .5);
 }
-
-.flex {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}

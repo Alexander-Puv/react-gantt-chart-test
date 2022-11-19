@@ -1,20 +1,60 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../../context/context';
-import cl from '../../styles/MainContent.module.css'
+import React from 'react';
+import cl from '../../styles/MainTop.module.css';
 
-let day = [];
-day.length = 12 * 7;
-for (let i = 0; i < day.length; i++) {
-    day[i] = i;
+const date = new Date('09.01.2022');
+
+function getAllTime(thisDate) {
+    const allTime = []
+    for (let i = 0; i < 12; i++) {
+        let week = [];
+
+        for(let w = 0; w < 7; w++){
+            week[w] = {
+                date: thisDate.getDate(),
+                month: thisDate.getMonth()
+            };
+            date.setDate(week[w].date + 1);
+        }
+        
+        allTime[i] = week;
+    }
+    return allTime;
+}
+const allTime = getAllTime(date);
+
+const DayComponent = ({day}) => {
+    return <div className={cl.day_container}>
+        <div className={cl.day + ' table_item'}>
+            {day}
+        </div>
+        <div className={cl.day_base + ' table_item'}></div>
+    </div>
+}
+
+const WeekComponent = ({week}) => {
+    const getMonth = (month) => {
+        return new Date(`${month + 1}`).toLocaleString('en', {
+            month: 'short'
+        })
+    }
+    
+    return <div className={cl.week}>
+        <div className={cl.week_range + ' table_item'}>
+            {week[0].date + ' ' + getMonth(week[0].month)} - {week[week.length - 1].date + ' ' + getMonth(week[week.length - 1].month)}
+        </div>
+        <div className={cl.week__days}>
+            {week.map(day => 
+                <DayComponent day={day.date} key={day.date} />
+            )}
+        </div>
+    </div>
 }
 
 const MainContent = () => {
-    const {data} = useContext(AppContext);
-    console.log(data);
-    return (
-        <section className={cl.mainContent}>
-            {day.map(i =>
-                <div className={cl.day + ' table_item'} key={i}></div>
+    return ( 
+        <section className={cl.main_content}>
+            {allTime.map((week, index) => 
+                <WeekComponent week={week} key={index} />
             )}
         </section>
     )
