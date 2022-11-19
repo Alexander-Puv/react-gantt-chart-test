@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0 10px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.header button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    font-weight: 500;
+    line-height: 28px;
+    background: #fff;
+    border: 1px solid rgba(var(--main-color), 0.12);
+    border-radius: 10px;
+}
+
+.header button i {
+    font-size: 22px;
+}

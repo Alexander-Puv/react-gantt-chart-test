@@ -1,0 +1,14 @@
+.main {
+    display: flex;
+    height: 708px;
+    border: 1px solid rgba(var(--main-color), 0.12);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset -4px 0 8px -5px rgba(0, 0, 0, .5);
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

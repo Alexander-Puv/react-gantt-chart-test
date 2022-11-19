@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import Header from './components/Header';
+import Main from './components/Main';
+import Loader from './components/UI/Loader';
+import { AppContext } from './context/context';
+import './styles/App.css';
+import './styles/iconfonts.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get('http://82.202.204.94/tmp/test.php')
+            .then(response => {
+                setData(response.data);
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+    }, [])
+
+    useEffect(() => {
+        data && setIsLoading(false)
+    }, [data])
+
+    return (
+        <AppContext.Provider value={{
+            data
+        }}>
+                <div className="App">
+                    {isLoading ?
+                        <Loader />
+                    :
+                        <>
+                            <Header />
+                            <Main />
+                        </>
+                    }
+                </div>
+        </AppContext.Provider>
+    );
 }
 
 export default App;
