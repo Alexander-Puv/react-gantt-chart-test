@@ -1,5 +1,10 @@
 .main_content {
-    left: 390px;
+    position: relative;
+    display: flex;
+}
+
+
+.weeks_container {
     display: flex;
 }
 
@@ -24,6 +29,8 @@
     height: 100%;
 }
 
+
+
 .day_container {
     flex: 1;
     display: flex;
@@ -38,5 +45,49 @@
 }
 
 .day_base {
+    position: relative;
     flex: 1;
+    border-bottom-width: 0 !important;
+}
+
+
+
+.nested_elements_container {
+    position: absolute;
+}
+
+.nested_element {
+    position: absolute;
+    min-width: 21.14px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.nested_element div {
+    height: 24px;
+    min-width: calc(100% + 1px);
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.st__nesting_level {
+    background: #E2EBFF;
+    border: 1px solid #497CF6;
+}
+.nd__nesting_level,
+.fifth__nesting_level {
+    background: #FFF2E0;
+    border: 1px solid #FFA530;
+}
+.rd__nesting_level,
+.forth__nesting_level {
+    background: #CFF0D6;
+    border: 1px solid #2DB77B;
+}
+
+.nested_element span {
+    position: absolute;
+    left: calc(8px + 100%);
+    width: 1000px;
 }

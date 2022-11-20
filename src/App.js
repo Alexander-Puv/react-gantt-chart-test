@@ -9,7 +9,10 @@ import './styles/iconfonts.css';
 
 function App() {
     const [data, setData] = useState();
+    const [areClose, setAreClose] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    console.log(areClose);
 
     useEffect(() => {
         axios.get('http://82.202.204.94/tmp/test.php')
@@ -27,7 +30,7 @@ function App() {
 
     return (
         <AppContext.Provider value={{
-            data
+            data, areClose, setAreClose
         }}>
                 <div className="App">
                     {isLoading ?

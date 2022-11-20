@@ -11,17 +11,20 @@ const icons = [
 ]
 
 const MainSideBar = () => {
-    const {data} = useContext(AppContext);
-    
+    const {data, areClose, setAreClose} = useContext(AppContext);
+
     const map = (object, id = 0) => {
         const toggleClass = (e) => {
             if (e.target.classList[1] === cl.isOpen) {
                 e.target.classList.remove(cl.isOpen)
                 e.target.parentElement.parentElement.parentElement.children[2].classList.remove(cl.isOpen)
+                setAreClose([...areClose, object.id])
             }
             else {
                 e.target.classList.add(cl.isOpen)
                 e.target.parentElement.parentElement.parentElement.children[2].classList.add(cl.isOpen)
+                areClose.splice(areClose.findIndex(el => el === object.id), 1)
+                setAreClose([...areClose])
             }
         }
 
