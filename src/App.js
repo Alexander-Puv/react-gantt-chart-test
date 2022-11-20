@@ -12,8 +12,6 @@ function App() {
     const [areClose, setAreClose] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log(areClose);
-
     useEffect(() => {
         axios.get('http://82.202.204.94/tmp/test.php')
             .then(response => {
